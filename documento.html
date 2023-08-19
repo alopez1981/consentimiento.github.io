@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento con firma </title>
+    <style>
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Consentimiento examen práctico </h1>
+    <p>Nombre: <span class="h2"id="nombreSpan"></span></p>
+    <p>Fecha: <span id="fechaSpan"></span></p>
+   
+   <img src = "images/logo.jpg" width="80" height="80"/>
+
+    <p> El Alumno por voluntad propia, decide presentarse a examen en la Jefatura Provincialde Tráfico el próximo sin la recomendación de nuestro equipo docente y sin haber llegado al nivel adecuado de preparación, según los estándares de formación de Hoy-Voy.</p>
+    <p>El alumno debe tener en cuenta que la Jefatura Provincial de Tráfico trabaja con fechas aproximadas y hasta una semana antes no confirman la fecha exacta. Si el alumno no se pudiera presentar, deberá aportar un justificante debidamente cumplimentado para que no se le descuente una convocatoria.</p>
+        
+
+<h3>Firma del alumno</h3>
+<img src="firma.png" alt="Firma del alumno" id="firma">
+<br>
+<script>
+      
+    // Obtener datos guardados en localStorage
+    const nombreUsuario = localStorage.getItem("nombreUsuario");
+    const fecha = localStorage.getItem("fecha");
+
+    // Mostrar el nombre y la fecha en los elementos spans correspondientes
+    
+
+    // Si tienes una función para obtener la imagen de la firma
+    if (window.opener) {
+        document.querySelector("#firma").src = window.opener.obtenerImagen();
+        document.querySelector("#nombreSpan").textContent = nombreUsuario;
+    document.querySelector("#fechaSpan").textContent = fecha;
+    }
+
+</script>
+
+
+</body>
+
+</html>
