@@ -17,14 +17,16 @@
 </head>
 
 <body>
+    <h3 class="d-flex justify-content-center"> Formulario consentimiento examen práctico</h3>
     <div class="text-bg-light p-3" class="d-grip gap-3">
         <form id="mb-3">
             <label class="navbar bg-body-tertiary" for="nombreUsuario">Nombre de alumno:</label>
             <input class="p-2 bg-light border" type="text" id="nombreUsuario" required> <br>
-            <label class="navbar bg-body-tertiary"for="fechaActual">Fecha automática</label>
+            <label class="navbar bg-body-tertiary"for="fechaActual">Fecha</label>
+            <div id="emailHelp" class="form-text">La fecha se añade de manera automática.</div>
             <button class="btn btn-primary" type="submit">Enviar nombre</button> <br>
         
-            <p class="h3">Firmar a continuación:</p>
+            <p class="h4">Firmar a continuación:</p>
             <canvas class="border border-4" class="p-3 mb-2 bg-light text-dark" class="mx-auto"id="canvas"></canvas><br>
             <button id="btnLimpiar" type="button" class="btn btn-primary">Limpiar</button>
             <button id="btnDescargar" type="button" class="btn btn-secondary">Descargar</button>
