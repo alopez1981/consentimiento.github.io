@@ -31,15 +31,10 @@
 <img src="firma.png" alt="Firma del alumno" id="firma">
 <br>
 <script>
-      
-    // Obtener datos guardados en localStorage
+    
     const nombreUsuario = localStorage.getItem("nombreUsuario");
     const fecha = localStorage.getItem("fecha");
 
-    // Mostrar el nombre y la fecha en los elementos spans correspondientes
-    
-
-    // Si tienes una función para obtener la imagen de la firma
     if (window.opener) {
         document.querySelector("#firma").src = window.opener.obtenerImagen();
         document.querySelector("#nombreSpan").textContent = nombreUsuario;
