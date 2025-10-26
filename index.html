@@ -20,23 +20,30 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/js/bootstrap.js"></script>
 </head>
 
-<body>
-<h3 class="d-flex justify-content-center">Formulario consentimiento examen práctico</h3>
+<body class="bg-light">
+<div class="container vh-100 d-flex flex-colum justify-content-center align-items-center">
+    <h3 class="mb-5 mt-4 text-center">Formulario consentimiento examen práctico</h3>
+    <div class="card shadow p-4" style="max-width: 700px; width: 100%">
+        <form id="formConsent">
+            <div class="mb-3">
+                <label for="nombreUsuario"><b>Nombre del alumno:</b></label>
+                <input class="p-2 bg-light border" type="text" id="nombreUsuario" required>
+            </div>
+            <div class="mb-3">
+                <p class="form-label">Firmar a continuación:</p>
+                <canvas id="canvas" class="border border-3 w-100" width="600" height="200"></canvas>
+                <br>
+            </div>
+            <div class="d-flex justify-content-center gap-2">
+                <button id="btnLimpiar" type="button" class="btn btn-outline-info">Limpiar</button>
+                <button id="btnDescargar" type="button" class="btn btn-outline-secondary">Descargar</button>
+                <button id="btnGenerarDocumento" type="button" class="btn btn-outline-success">Crear documento</button>
+            </div>
+        </form>
 
-<div class="text-bg-light p-3">
-    <form id="formConsent">
-        <label for="nombreUsuario"><b>Nombre del alumno:</b></label>
-        <input class="p-2 bg-light border" type="text" id="nombreUsuario" required>
-
-        <p class="h4 mt-3">Firmar a continuación:</p>
-        <canvas id="canvas" class="border border-4" width="600" height="200"></canvas>
-        <br>
-
-        <button id="btnLimpiar" type="button" class="btn btn-outline-info">Limpiar</button>
-        <button id="btnGenerarDocumento" type="button" class="btn btn-outline-success">Crear documento</button>
-    </form>
-
+    </div>
 </div>
+
 
 <script src="script.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
