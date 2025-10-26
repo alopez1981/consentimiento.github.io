@@ -39,19 +39,10 @@
 <img src="firma.png" alt="Firma del alumno" id="firma">
 <br>
 <script>
-    const nombre = localStorage.getItem("nombreUsuario") || "";
-    const fecha = localStorage.getItem("fecha") || "";
-    let firma = "";
-
-    if (window.opener && typeof window.opener.obtenerImagen === "function") {
-        try {
-            firma = window.opener.obtenerImagen();
-        } catch (e) {
-        }
-    }
-    if (!firma) {
-        firma = localStorage.getItem("firmaDataUrl") || "";
-    }
+    const q = new URLSearchParams(location.search);
+    const nombre = q.get("nombre") || "";
+    const fecha = q.get("fecha") || "";
+    const firma = localStorage.getItem("firmaDataUrl");
 
     document.querySelector("#nombreSpan").textContent = nombre;
     document.querySelector("#fechaSpan").textContent = fecha;

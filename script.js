@@ -11,7 +11,7 @@ const GROSOR = 2;
 
 let xAnt = 0, yAnt = 0, xAct = 0, yAct = 0;
 let dibujando = false;
-let huboTrazo = false; // <- para validar que hay firma
+let huboTrazo = false;
 
 const xReal = (cx) => cx - $canvas.getBoundingClientRect().left;
 const yReal = (cy) => cy - $canvas.getBoundingClientRect().top;
@@ -34,8 +34,6 @@ $btnDescargar.onclick = () => {
     a.href = $canvas.toDataURL();
     a.click();
 };
-
-window.obtenerImagen = () => $canvas.toDataURL();
 
 function inicioDibujo(ev) {
     const t = ev.type.includes("touch") ? ev.touches[0] : ev;
@@ -74,7 +72,6 @@ function finDibujo() {
 ["mousemove", "touchmove"].forEach(e => $canvas.addEventListener(e, movDibujo));
 ["mouseup", "touchend", "mouseleave"].forEach(e => $canvas.addEventListener(e, finDibujo));
 
-// --- Un solo botón que hace todo ---
 $btnGenerarDocumento.onclick = () => {
     const nombre = ($nombre.value || "").trim();
     if (!nombre) {
@@ -89,9 +86,8 @@ $btnGenerarDocumento.onclick = () => {
     const fecha = new Date().toLocaleDateString();
     const firmaDataUrl = $canvas.toDataURL();
 
-    localStorage.setItem("nombreUsuario", nombre);
-    localStorage.setItem("fecha", fecha);
-    localStorage.setItem("firmaDataUrl", firmaDataUrl); // respaldo
+    localStorage.setItem("firmaDataUrl", firmaDataUrl);
 
-    window.open("documento.html");
+    const url = `documento.html?nombre=${encodeURIComponent(nombre)}&fecha=${encodeURIComponent(fecha)}`;
+    window.open(url);
 };
