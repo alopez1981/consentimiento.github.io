@@ -9,24 +9,20 @@ const COLOR_PINCEL = "black";
 const COLOR_FONDO = "white";
 const GROSOR = 2;
 
-let xAnt = 0, yAnt = 0, xAct = 0, yAct = 0;
+let xAnt=0, yAnt=0, xAct=0, yAct=0;
 let dibujando = false;
 let huboTrazo = false;
 
 const xReal = (cx) => cx - $canvas.getBoundingClientRect().left;
 const yReal = (cy) => cy - $canvas.getBoundingClientRect().top;
 
-function limpiarCanvas() {
+function limpiarCanvas(){
     ctx.fillStyle = COLOR_FONDO;
     ctx.fillRect(0, 0, $canvas.width, $canvas.height);
 }
-
 limpiarCanvas();
 
-$btnLimpiar.onclick = () => {
-    limpiarCanvas();
-    huboTrazo = false;
-};
+$btnLimpiar.onclick = () => { limpiarCanvas(); huboTrazo = false; };
 
 $btnDescargar.onclick = () => {
     const a = document.createElement('a');
@@ -35,10 +31,9 @@ $btnDescargar.onclick = () => {
     a.click();
 };
 
-function inicioDibujo(ev) {
+function inicioDibujo(ev){
     const t = ev.type.includes("touch") ? ev.touches[0] : ev;
-    xAct = xReal(t.clientX);
-    yAct = yReal(t.clientY);
+    xAct = xReal(t.clientX); yAct = yReal(t.clientY);
     ctx.beginPath();
     ctx.fillStyle = COLOR_PINCEL;
     ctx.fillRect(xAct, yAct, GROSOR, GROSOR);
@@ -46,15 +41,12 @@ function inicioDibujo(ev) {
     dibujando = true;
     huboTrazo = true;
 }
-
-function movDibujo(ev) {
+function movDibujo(ev){
     ev.preventDefault();
-    if (!dibujando) return;
+    if(!dibujando) return;
     const t = ev.type.includes("touch") ? ev.touches[0] : ev;
-    xAnt = xAct;
-    yAnt = yAct;
-    xAct = xReal(t.clientX);
-    yAct = yReal(t.clientY);
+    xAnt = xAct; yAnt = yAct;
+    xAct = xReal(t.clientX); yAct = yReal(t.clientY);
     ctx.beginPath();
     ctx.moveTo(xAnt, yAnt);
     ctx.lineTo(xAct, yAct);
@@ -63,25 +55,16 @@ function movDibujo(ev) {
     ctx.stroke();
     ctx.closePath();
 }
+function finDibujo(){ dibujando = false; }
 
-function finDibujo() {
-    dibujando = false;
-}
-
-["mousedown", "touchstart"].forEach(e => $canvas.addEventListener(e, inicioDibujo));
-["mousemove", "touchmove"].forEach(e => $canvas.addEventListener(e, movDibujo));
-["mouseup", "touchend", "mouseleave"].forEach(e => $canvas.addEventListener(e, finDibujo));
+["mousedown","touchstart"].forEach(e=> $canvas.addEventListener(e, inicioDibujo));
+["mousemove","touchmove"].forEach(e=> $canvas.addEventListener(e, movDibujo));
+["mouseup","touchend","mouseleave"].forEach(e=> $canvas.addEventListener(e, finDibujo));
 
 $btnGenerarDocumento.onclick = () => {
     const nombre = ($nombre.value || "").trim();
-    if (!nombre) {
-        alert("Introduce el nombre del alumno.");
-        return;
-    }
-    if (!huboTrazo) {
-        alert("Falta la firma.");
-        return;
-    }
+    if(!nombre){ alert("Introduce el nombre del alumno."); return; }
+    if(!huboTrazo){ alert("Falta la firma."); return; }
 
     const fecha = new Date().toLocaleDateString();
     const firmaDataUrl = $canvas.toDataURL();
