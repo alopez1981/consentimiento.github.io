@@ -18,13 +18,11 @@ function resizeCanvas() {
     const dpr = window.devicePixelRatio || 1;
     const rect = $canvas.getBoundingClientRect();
     const cssW = Math.max(1, rect.width);
-    const cssH = Math.max(1, rect.height || 240); // por si aún no tiene alto calculado
+    const cssH = Math.max(1, rect.height || 240);
 
-    // bitmap interno en px reales
     $canvas.width = Math.round(cssW * dpr);
     $canvas.height = Math.round(cssH * dpr);
 
-    // dibujaremos en px del bitmap (sin scale)
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
